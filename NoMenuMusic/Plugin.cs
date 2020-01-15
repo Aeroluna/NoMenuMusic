@@ -1,6 +1,6 @@
-﻿using IPA;
+﻿using Harmony;
+using IPA;
 using UnityEngine.SceneManagement;
-using Harmony;
 using IPALogger = IPA.Logging.Logger;
 
 namespace NoMenuMusic
