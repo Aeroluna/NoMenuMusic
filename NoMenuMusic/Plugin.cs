@@ -1,47 +1,31 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using IPA;
 using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
 
 namespace NoMenuMusic
 {
-    public class Plugin : IBeatSaberPlugin
+    [Plugin(RuntimeOptions.SingleStartInit)]
+    internal class Plugin
     {
-        internal static HarmonyInstance harmony;
+        internal static IPALogger log { get; set; }
 
-        public void Init(object thisIsNull, IPALogger logger)
+        internal static void Log(string message, IPALogger.Level level = IPALogger.Level.Debug)
         {
-            Logger.log = logger;
+            log.Log(level, $"{message}");
         }
 
+        [Init]
+        public Plugin(IPALogger logger)
+        {
+            log = logger;
+        }
+
+        [OnStart]
         public void OnApplicationStart()
         {
-            harmony = HarmonyInstance.Create("com.aeroluna.BeatSaber.NoMenuMusic");
+            var harmony = new Harmony("com.aeroluna.BeatSaber.NoMenuMusic");
             harmony.PatchAll(System.Reflection.Assembly.GetExecutingAssembly());
-        }
-
-        public void OnApplicationQuit()
-        {
-        }
-
-        public void OnFixedUpdate()
-        {
-        }
-
-        public void OnUpdate()
-        {
-        }
-
-        public void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
-        {
-        }
-
-        public void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
-        {
-        }
-
-        public void OnSceneUnloaded(Scene scene)
-        {
         }
     }
 }
