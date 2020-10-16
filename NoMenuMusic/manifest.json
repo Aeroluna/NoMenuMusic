@@ -2,9 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/nike4613/ModSaber-MetadataFileSchema/master/Schema.json",
   "author": "Aeroluna",
   "description": "Disables music in main menu",
-  "gameVersion": "1.8.0",
+  "gameVersion": "1.12.1",
   "id": "NoMenuMusic",
   "name": "NoMenuMusic",
-  "version": "1.1.0",
-  "features": []
+  "version": "1.1.1",
+  "dependsOn": {
+    "BSIPA": "^4.1.2"
+  }
 }
